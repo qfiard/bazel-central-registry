@@ -36,6 +36,19 @@ cc_library(
 )
 
 cc_library(
+    name = "sqs",
+    srcs = glob(["generated/src/aws-cpp-sdk-sqs/source/**/*.cpp"]),
+    hdrs = glob(["generated/src/aws-cpp-sdk-sqs/include/**/*.h"]),
+    copts = common_copts,
+    includes = ["generated/src/aws-cpp-sdk-sqs/include"],
+    target_compatible_with = ["@platforms//os:linux"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":core",
+    ],
+)
+
+cc_library(
     name = "sts",
     srcs = glob(["generated/src/aws-cpp-sdk-sts/source/**/*.cpp"]),
     hdrs = glob(["generated/src/aws-cpp-sdk-sts/include/**/*.h"]),
@@ -261,12 +274,12 @@ cc_library(
     hdrs = glob(["crt/aws-crt-cpp/crt/aws-c-event-stream/include/**/*.h"]),
     copts = common_copts,
     includes = ["crt/aws-crt-cpp/crt/aws-c-event-stream/include"],
+    visibility = ["//visibility:public"],
     deps = [
         ":aws-c-common",
         ":aws-c-io",
         ":aws-checksums",
     ],
-    visibility = ["//visibility:public"],
 )
 
 cc_library(
@@ -300,10 +313,10 @@ cc_library(
     ],
     includes = ["crt/aws-crt-cpp/crt/aws-checksums/include"],
     target_compatible_with = ["@platforms//os:linux"],
+    visibility = ["//visibility:public"],
     deps = [
         ":aws-c-common",
     ],
-    visibility = ["//visibility:public"],
 )
 
 cc_library(
@@ -323,11 +336,11 @@ cc_library(
     ],
     includes = ["crt/aws-crt-cpp/crt/aws-c-cal/include"],
     target_compatible_with = ["@platforms//os:linux"],
+    visibility = ["//visibility:public"],
     deps = [
         ":aws-c-common",
         "@boringssl//:crypto",
     ],
-    visibility = ["//visibility:public"],
 )
 
 cc_library(
@@ -337,12 +350,12 @@ cc_library(
     copts = common_copts,
     includes = ["crt/aws-crt-cpp/crt/aws-c-s3/include"],
     target_compatible_with = ["@platforms//os:linux"],
+    visibility = ["//visibility:public"],
     deps = [
         ":aws-c-auth",
         ":aws-c-common",
         ":aws-checksums",
     ],
-    visibility = ["//visibility:public"],
 )
 
 cc_library(
@@ -352,10 +365,10 @@ cc_library(
     copts = common_copts,
     includes = ["crt/aws-crt-cpp/crt/aws-c-compression/include"],
     target_compatible_with = ["@platforms//os:linux"],
+    visibility = ["//visibility:public"],
     deps = [
         ":aws-c-common",
     ],
-    visibility = ["//visibility:public"],
 )
 
 cc_library(
@@ -368,12 +381,12 @@ cc_library(
     includes = ["crt/aws-crt-cpp/crt/aws-c-http/include"],
     target_compatible_with = ["@platforms//os:linux"],
     textual_hdrs = glob(["crt/aws-crt-cpp/crt/aws-c-http/include/**/*.def"]),
+    visibility = ["//visibility:public"],
     deps = [
         ":aws-c-common",
         ":aws-c-compression",
         ":aws-c-io",
     ],
-    visibility = ["//visibility:public"],
 )
 
 cc_library(
@@ -383,10 +396,10 @@ cc_library(
     copts = common_copts,
     includes = ["crt/aws-crt-cpp/crt/aws-c-sdkutils/include"],
     target_compatible_with = ["@platforms//os:linux"],
+    visibility = ["//visibility:public"],
     deps = [
         ":aws-c-common",
     ],
-    visibility = ["//visibility:public"],
 )
 
 cc_library(
@@ -396,13 +409,13 @@ cc_library(
     copts = common_copts,
     includes = ["crt/aws-crt-cpp/crt/aws-c-auth/include"],
     target_compatible_with = ["@platforms//os:linux"],
+    visibility = ["//visibility:public"],
     deps = [
         ":aws-c-common",
         ":aws-c-http",
         ":aws-c-io",
         ":aws-c-sdkutils",
     ],
-    visibility = ["//visibility:public"],
 )
 
 cc_library(
@@ -414,12 +427,12 @@ cc_library(
     ],
     includes = ["crt/aws-crt-cpp/crt/aws-c-mqtt/include"],
     target_compatible_with = ["@platforms//os:linux"],
+    visibility = ["//visibility:public"],
     deps = [
         ":aws-c-common",
         ":aws-c-http",
         ":aws-c-io",
     ],
-    visibility = ["//visibility:public"],
 )
 
 cc_library(
@@ -442,15 +455,15 @@ cc_library(
         "-Wno-sign-compare",
         "-Wno-unused-parameter",
     ],
-    linkopts = ["-ldl"],
     includes = ["crt/aws-crt-cpp/crt/aws-c-io/include"],
+    linkopts = ["-ldl"],
     target_compatible_with = ["@platforms//os:linux"],
+    visibility = ["//visibility:public"],
     deps = [
         ":aws-c-cal",
         ":aws-c-common",
         ":s2n",
     ],
-    visibility = ["//visibility:public"],
 )
 
 cc_library(
@@ -480,8 +493,8 @@ cc_library(
         "crt/aws-crt-cpp/crt/s2n/api",
     ],
     target_compatible_with = ["@platforms//os:linux"],
+    visibility = ["//visibility:public"],
     deps = [
         "@boringssl//:crypto",
     ],
-    visibility = ["//visibility:public"],
 )

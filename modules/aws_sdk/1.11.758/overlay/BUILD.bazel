@@ -21,6 +21,11 @@ alias(
 )
 
 alias(
+    name = "sqs",
+    actual = "@aws_sdk_bundled//:sqs",
+)
+
+alias(
     name = "sts",
     actual = "@aws_sdk_bundled//:sts",
 )
